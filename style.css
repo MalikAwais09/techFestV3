@@ -11,7 +11,7 @@
   /* Hero Section */
   .hero {
     height: 80vh;
-    background: url('../Images/BIIT_banner.png') no-repeat center center/cover;
+    background: url('BIIT_banner.png') no-repeat center center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
