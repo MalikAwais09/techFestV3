@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration Form</title>
+        
+    <style>
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #fff;
+  color: #000;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  width: 80%;
+  max-width: 600px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #000;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 8px;
+  color: #000;
+  font-weight: 500;
+}
+
+input, select {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f8f9fa;
+  color: #000;
+}
+
+input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4z'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 8px 10px;
+  padding-right: 30px;
+}
+
+select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+
+.member-fields {
+  margin-top: 20px;
+}
+
+.member-fields div{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+.member-fields input {
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 50px;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #4CAF50;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 20px;
+  }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Event Registration</h1>
+        <form id="registrationForm">
+            <label for="eventName">Event:</label>
+            <select id="eventName" name="eventName" required>
+                <option value="">Select Event</option>
+                <option value="programming">Programming Competition</option>
+                <option value="ai">AI Workshop</option>
+                <option value="webdev">Web Development Challenge</option>
+                <option value="cybersecurity">Cybersecurity Seminar</option>
+                <option value="software">Software Engineering Project</option>
+            </select>
+
+            <label for="teamName">Team Name:</label>
+            <input type="text" id="teamName" name="teamName" placeholder="Enter your team name" required>
+
+            <label for="groupSize">Group Size (2-6):</label>
+            <select id="groupSize" name="groupSize" required>
+                <option value="">Select Group Size</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" placeholder="e.g, (Ali Ahmed)" required>
+
+            <label for="aridNumber">Your Arid Number:</label>
+            <input type="text" id="aridNumber" name="aridNumber" placeholder="e.g, (2022-ARID-4079)" required>
+
+            <label for="cnic">Your CNIC:</label>
+            <input type="text" id="cnic" name="cnic" placeholder="37405-1233345-1" required>
+
+            <label for="phoneNumber">Your Phone Number:</label>
+            <input type="text" id="phoneNumber" name="phoneNumber" placeholder="0312-1234567" required>
+
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email"  placeholder="yourmail@gmail.com"required>
+
+            <label for="section">Your Section:</label>
+            <input type="text" id="section" name="section " placeholder="BSCS-6A" required>
+
+            <div class="member-fields" id="memberFields">
+                </div>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+const groupSizeSelect = document.getElementById('groupSize');
+const memberFieldsDiv = document.getElementById('memberFields');
+
+groupSizeSelect.addEventListener('change', function() {
+    const groupSize = parseInt(this.value);
+    memberFieldsDiv.innerHTML = ''; // Clear previous fields
+
+    if (groupSize > 1) { // only show member fields if group size is greater than 1
+        for (let i = 2; i <= groupSize; i++) {
+            const memberDiv = document.createElement('div');
+
+            const nameLabel = document.createElement('label');
+            nameLabel.textContent = `Member ${i} Name:`;
+            const nameInput = document.createElement('input');
+            nameInput.type = 'text';
+            nameInput.name = `memberName${i}`;
+            nameInput.placeholder = `Enter Name of Member ${i}`;
+            nameInput.required = true;
+
+            const aridLabel = document.createElement('label');
+            aridLabel.textContent = `Member ${i} Arid Number:`;
+            const aridInput = document.createElement('input');
+            aridInput.type = 'text';
+            aridInput.name = `memberAridNumber${i}`;
+            aridInput.placeholder = `Enter Arid Number of Member ${i}`;
+            aridInput.required = true;
+
+            memberDiv.appendChild(nameLabel);
+            memberDiv.appendChild(nameInput);
+            memberDiv.appendChild(aridLabel);
+            memberDiv.appendChild(aridInput);
+            memberFieldsDiv.appendChild(memberDiv);
+        }
+    }
+});
+
+document.getElementById('registrationForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    //  perform validation and registration logic here
+    const eventName = document.getElementById('eventName').value;
+    const teamName = document.getElementById('teamName').value;
+    const groupSize = document.getElementById('groupSize').value;
+    const name = document.getElementById('name').value;
+    const aridNumber = document.getElementById('aridNumber').value;
+    const cnic = document.getElementById('cnic').value;
+    const phoneNumber = document.getElementById('phoneNumber').value;
+    const email = document.getElementById('email').value;
+    const section = document.getElementById('section').value;
+
+    if (!eventName || !teamName || !groupSize || !name || !aridNumber || !cnic || !phoneNumber || !email || !section) {
+        alert('Please fill in all the required fields.');
+        return;
+    }
+    if (parseInt(groupSize) < 1 || parseInt(groupSize) > 6) {
+        alert('Group size must be between 1 and 6.');
+        return;
+    }
+
+    const memberNames = [];
+    const memberAridNumbers = [];
+    if(parseInt(groupSize) > 1){
+        for (let i = 2; i <= parseInt(groupSize); i++) { // Start from 2, as 1st member info is already taken
+            const memberNameInput = document.querySelector(`input[name="memberName${i}"]`);
+            const memberAridInput = document.querySelector(`input[name="memberAridNumber${i}"]`);
+            if (!memberNameInput || !memberNameInput.value.trim() || !memberAridInput || !memberAridInput.value.trim()) {
+                alert(`Please enter the name and Arid number for Member ${i}.`);
+                return;
+            }
+            memberNames.push(memberNameInput.value.trim());
+            memberAridNumbers.push(memberAridInput.value.trim());
+        }
+    }
+
+
+    console.log('Event Name:', eventName);
+    console.log('Team Name:', teamName);
+    console.log('Group Size:', groupSize);
+    console.log('Your Name:', name);
+    console.log('Your Arid Number:', aridNumber);
+    console.log('Your CNIC:', cnic);
+    console.log('Your Phone Number:', phoneNumber);
+    console.log('Your Email:', email);
+    console.log('Your Section:', section);
+    console.log('Member Names:', memberNames);
+    console.log('Member Arid Numbers:', memberAridNumbers);
+
+    alert('Registration successful! Check console for data.');
+
+    this.reset();
+    memberFieldsDiv.innerHTML = '';
+});
+    </script>
+</body>
+</html>

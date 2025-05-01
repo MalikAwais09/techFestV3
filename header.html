@@ -1,0 +1,229 @@
+<head>
+  <script src="script.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      font-family: sans-serif;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 15px 20px;
+      background: #fff;
+      border-bottom: 1px solid black;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1001;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-img {
+      height: 50px; /* Adjust based on your logo size */
+      width: auto;
+      border-radius: 50px;
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .logo-text a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .auth-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .login-btn, .register-btn {
+      padding: 8px 16px;
+      border: 1px solid #333;
+      background: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .register-btn {
+      background-color: #4F46E5;
+      color: #fff;
+      border: none;
+    }
+
+    /* Hamburger Menu Styles */
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 4px;
+      z-index: 1000;
+    }
+
+    .hamburger-line {
+      width: 25px;
+      height: 2px;
+      background-color: #333;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links.active,
+    .auth-buttons.active {
+      display: flex !important;
+    }
+
+    /* Mobile Menu Styles */
+    @media (max-width: 768px) {
+      .nav-links,
+      .auth-buttons {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links, .hamnav{
+        position: fixed;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        border-bottom: 1px solid black;
+        z-index: 999;
+      }
+
+      .auth-buttons {
+        position: fixed;
+        top: 200px;
+        right: 0;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        padding: 0 20px;
+      }
+
+      .hamburger.active .hamburger-line:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      .hamburger.active .hamburger-line:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active .hamburger-line:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+      
+      
+      /* Adjust logo size for mobile */
+      .logo-img {
+        height: 30px;
+      }
+    }
+
+    .disabled{
+      display: none;
+    }
+    .whatsapp-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index:20000;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    animation: float 2s ease-in-out infinite;
+    transition: transform 0.3s ease;
+    
+  }
+  
+  .whatsapp-icon:hover {
+    transform: scale(1.1);
+  }
+  
+  .whatsapp-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-18px);
+    }
+  }
+  </style>
+</head>
+
+<header class="navbar">
+  <div class="logo">
+    <img src="image.png" alt="BIIT TechFest Logo" class="logo-img">
+    <div class="logo-text"><a href="index.html">BIIT-TechFest</a></div>
+  </div>
+
+  <div class="hamburger" onclick="toggleMenu()">
+    <div class="hamburger-line"></div>
+    <div class="hamburger-line"></div>
+    <div class="hamburger-line"></div>
+  </div>
+
+  <nav>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="event-details.html">Events</a></li>
+      <li><a href="about.html">About US</a></li>
+    </ul>
+  </nav>
+
+  <nav class="hamnav disabled"> 
+    <ul class="nav-links nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="event-details.html">Events</a></li>
+      <li><a href="about.html">About US</a></li>
+    <button onclick="registerBtnClick();" class="register-btn">Register For Event</button>
+    <li></li>
+    </ul>
+  </nav>
+
+  
+  <div class="auth-buttons">
+    <button onclick="registerBtnClick();" class="register-btn">Register For Event</button>
+  </div>
+
+  
+</header>
+
+<a href="https://chat.whatsapp.com/BYMBCmYvplBG9Uhs4enZVA" target="_blank" rel="noopener noreferrer">
+  <div class="whatsapp-icon" style="cursor: pointer;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="40" height="40" />
+  </div>
+</a>
+<!-- From Uiverse.io by NelsonDJCR --> 

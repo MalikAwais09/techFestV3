@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js"></script>
+     <script>
+        fetch('header.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('header-container').innerHTML = data;
+        // After the header is loaded, select the .navbar element and change its width
+        const navbar = document.querySelector('#header-container .navbar');
+        if (navbar) {
+            navbar.style.width = '90%';
+        }
+    });
+     </script>
+    <title>Competition Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding-bottom: 50px;
+        }
+        
+        .table-container {
+
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: 50px;
+            border: 1px solid #e5e7eb; 
+            background: #fff;
+            padding: 0px 50px;
+            margin-bottom: 50px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-radius: 10px;
+
+        }
+        .table-container p:nth-last-child(1) {
+            text-align: center;
+        }
+        
+        .table-container h2 {
+            text-align: center;
+        }
+        .table-container h3 {
+            margin-top: 50px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #333;
+        }
+        
+        th, td {
+            border: 1px solid #333;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f9f9f9;
+            font-weight: bold;
+        }
+        
+        /* tr:nth-child(even) {
+            background-color: #f9f9f9;
+        } */
+
+        .hidden{
+                display: none;
+            }
+        
+            p{
+                
+            line-height: 1.8;
+            }
+            ul li {
+            /* Add margin to the bottom of each list item  */
+            margin-bottom: 10px;
+        }
+        /* Making the table responsive */
+       
+        .register-button {
+            display: block;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 15px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            position: fixed;
+            bottom: 30px;
+            left: 80%;
+            transform: translateX(-50%);
+            width: 200px; /* Adjust width as needed */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .register-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* From Uiverse.io by satyamchaudharydev */ 
+.button {
+  /* position: relative; */
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  padding-block: 0.5rem;
+  padding-inline: 1.25rem;
+  /* background-color: rgb(0 107 179); */
+  background: #4F46E5;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffff;
+  gap: 10px;
+  font-weight: bold;
+  border: 3px solid #ffffff4d;
+  outline: none;
+  overflow: hidden;
+  font-size: 15px;
+  cursor: pointer;
+  
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  transition: all 0.3s ease-in-out;
+}
+
+.button:hover .icon {
+  transform: translate(4px);
+}
+
+.button:hover::before {
+  animation: shine 1.5s ease-out infinite;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  background-image: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0) 70%
+  );
+  top: 0;
+  left: -100px;
+  opacity: 0.6;
+  animation: shine 2.0s ease-out infinite;
+
+}
+
+@keyframes shine {
+  0% {
+    left: -100px;
+  }
+
+  60% {
+    left: 100%;
+  }
+
+  to {
+    left: 100%;
+  }
+}
+
+
+        @media (max-width: 600px) {
+            .register-button {
+                width: 90%;
+                left: 5%;
+                transform: none;
+            }
+        }
+
+
+        /* Media queries for responsive design */
+
+/* Large screens (desktops) */
+@media screen and (max-width: 1200px) {
+    .table-container {
+        max-width: 90%;
+        padding: 0 30px;
+    }
+}
+
+/* Medium screens (tablets) */
+@media screen and (max-width: 992px) {
+    .table-container {
+        padding: 0 20px;
+    }
+    
+    table {
+        font-size: 0.95em;
+    }
+    
+    th, td {
+        padding: 10px;
+    }
+    
+    .register-button {
+        left: 50%;
+        bottom: 30px;
+    }
+}
+
+/* Small tablets and large phones */
+@media screen and (max-width: 768px) {
+    .table-container {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        padding: 0 15px;
+    }
+    
+    .table-container h2 {
+        font-size: 1.5rem;
+    }
+    
+    .table-container h3 {
+        font-size: 1.2rem;
+        margin-top: 30px;
+    }
+    
+    table {
+        font-size: 0.9em;
+    }
+}
+
+/* Mobile phones */
+@media screen and (max-width: 600px) {
+    .table-container {
+        padding: 0 10px;
+        border-radius: 5px;
+    }
+   
+    
+    table td::before, table th::before {
+        /* content: attr(data-label); */
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    
+    table td:last-child, table th:last-child {
+        border-bottom: 0;
+    }
+    
+    .register-button {
+        width: 84%;
+        left: 5%;
+        transform: none;
+        bottom: 20px;
+        padding: 12px 15px;
+    }
+    
+    p, ul li {
+        font-size: 0.9em;
+    }
+    
+    ul {
+        padding-left: 20px;
+    }
+    
+}
+
+/* Extra small devices */
+@media screen and (max-width: 480px) {
+    .table-container h2 {
+        font-size: 1.3rem;
+    }
+    
+    .table-container h3 {
+        font-size: 1.1rem;
+    }
+    
+    p, ul li {
+        font-size: 0.85em;
+    }
+    
+    .register-button {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+}
+
+/* Ultra small devices */
+@media screen and (max-width: 320px) {
+    .table-container {
+        padding: 0 5px;
+    }
+    
+    .table-container h2 {
+        font-size: 1.2rem;
+    }
+    
+    table td, table th {
+        font-size: 0.75em;
+        padding: 6px 8px;
+    } .register-button {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+}
+/* From Uiverse.io by ZacharyCrespin */ 
+    button {
+        cursor: pointer;
+        font-weight: 700;
+        font-family: Helvetica,"sans-serif";
+        transition: all .2s;
+        padding: 10px 20px;
+        border-radius: 100px;
+        background: white;
+        border: 1px solid transparent;
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+        position: relative;
+        left: 10%;
+    }
+    button > svg {
+        width: 34px;
+        margin-right: 10px; /* Changed from margin-left to margin-right */
+        transition: transform .3s ease-in-out;
+        transform: rotate(180deg); /* Rotated 180 degrees to point left */
+    }
+    button:hover svg {
+        transform: translateX(-5px) rotate(180deg); /* Changed direction and kept rotation */
+    }
+    button:active {
+        transform: scale(0.95);
+    }
+
+
+
+    </style>
+</head>
+<body>
+  <div id="header-container"></div>
+  <button onclick="window.location.href='event-details.html'">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 74 74" height="34" width="34">
+      <circle stroke-width="3" stroke="black" r="35.5" cy="37" cx="37">
+      </circle>
+      <path fill="black" d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z">
+      </path>
+    </svg>
+    <span>
+      Go Back
+    </span>
+  </button>
+
+    <!-- coderoyal -->
+    <div class="table-container hidden coderoyal">
+        <h2>Code Royale: The Ultimate Solo Programming Gauntlet!</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Team Members</th>
+                    <th>Registration Amount</th>
+                    <th>Competition</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Team Members">Solo</td>
+                    <td data-label="Regist Amount">Rs 350/-</td>
+                    <td data-label="Competition" rowspan="2">Solo Coders Shutdown</td>
+                </tr>
+                 <tr>
+                    <td data-label="Team Members">Team (2-6) Members</td>
+                    <td data-label="Regist Amount">Rs 500/-</td>
+                </tr>
+                <tr>
+                    <th data-label="Team Members">Venue</th>
+                    <th data-label="Competition">Date Time</th>
+                    <th data-label="Regist Amount">Contact</th>
+                </tr>
+                <tr>
+                    <td data-label="Team Members">Lab 1</td>
+                    <td data-label="Competition">May 12, 2025 (9:30 AM – 2:00 PM)</td>
+                    <td data-label="Regist Amount">+92-327 5817004</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Description:</h3>
+        <p>Think you have what it takes to out-code everyone else?
+            <br>
+            Code Royale is a high-stakes solo coding battle where participants will race against time and complexity! Test your algorithmic strength, logical problem-solving, and hands-on coding skills as you climb the ladder from theory challenges to brutal final-round coding tasks.
+            <br>
+            <br>
+            <strong>What You'll Face?</strong> 
+            <br>
+                <ul>
+                    <li>Rapid-fire MCQs and logic puzzles to test your wits</li> 
+                    <li>Hands-on programming challenges growing in difficulty.</li> 
+                    <li>Real-time code optimization and debugging.</li>
+                    <li>Intense pressure to deliver clean, efficient solutions.</li>
+                    <li>The competition spans nearly 5 hours, designed to push your mind and stamina to the absolute limit. Fast, focused, and fierce — only the sharpest coder will seize the throne!.</li>
+                </ul>
+            </p>
+        <p > <strong>Note: Participants must bring their own laptops. Languages allowed: C++, Java, or Python. No AI code-generation tools permitted.</strong></p>
+
+    </div>
+    
+ <!-- DesignVerse -->
+    <div class="table-container hidden DesignVerse">
+        <h2>DesignVerse: The Ultimate GUI Innovation Arena!</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Team Members</th>
+                    <th>Competition</th>
+                    <th>Registration Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Team Members">Solo</td>
+                    <td data-label="Regist Amount">Rs 350/-</td>
+                    <td data-label="Competition" rowspan="2">Team Design Battle</td>
+                </tr>
+                 <tr>
+                    <td data-label="Team Members">Team (2-6) Members</td>
+                    <td data-label="Regist Amount">Rs 500/-</td>
+                </tr>
+                <tr>
+                    <th data-label="Team Members">Venue</th>
+                    <th data-label="Competition">Date Time</th>
+                    <th data-label="Regist Amount">Contact</th>
+                </tr>
+                <tr>
+                    <td data-label="Team Members">Lab 2</td>
+                    <td data-label="Competition">May 12, 2025 (9:30 AM – 1:30 PM)</td>
+                    <td data-label="Regist Amount">+92 325 5288332</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Description:</h3>
+        <p>Are you ready to design the future?
+
+            <br>
+            DesignVerse is a team-based GUI design competition where your creativity, teamwork, and user-centric thinking will be tested to the fullest. Create stunning interfaces and seamless user experiences that not only look beautiful but function flawlessly.
+            <br>
+            <br>
+            <strong>What You'll Face?</strong> 
+            <br>
+                <ul>
+                    <li>Real-world UI/UX design challenges</li> 
+                    <li>GUI prototypes under time constraints.</li> 
+                    <li>User flow optimization tasks.</li>
+                    <li>Creative concept pitches and presentations.</li>
+                    <li>Over 4 intense hours, you and your team must craft designs that combine aesthetics, functionality, and innovation. The best designers don’t just create — they captivate!.</li>
+                </ul>
+            </p>
+        <p > <strong>Note: Participants must bring their own laptops. Python is preferred. Use of open-source AI libraries is permitted — no pre-trained models allowed.</strong></p>
+
+    </div>
+ <!-- NeuroNexus -->
+    <div class="table-container hidden NeuroNexus">
+        <h2>Neuro Nexus: The Ultimate AI Battlefield!</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Team Members</th>
+                    <th>Competition</th>
+                    <th>Registration Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Team Members">Solo</td>
+                    <td data-label="Regist Amount">Rs 350/-</td>
+                    <td data-label="Competition" rowspan="2">Team Ai Challenge</td>
+                </tr>
+                 <tr>
+                    <td data-label="Team Members">Team (2-6) Members</td>
+                    <td data-label="Regist Amount">Rs 500/-</td>
+                </tr>
+                <tr>
+                    <th data-label="Team Members">Venue</th>
+                    <th data-label="Competition">Date Time</th>
+                    <th data-label="Regist Amount">Contact</th>
+                </tr>
+                <tr>
+                    <td data-label="Team Members">Lab 7</td>
+                    <td data-label="Competition">May 12, 2025 (9:30 AM – 2:30 PM)</td>
+                    <td data-label="Regist Amount">+92-324-6500930</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Description:</h3>
+        <p>Are you ready to unleash the true power of Artificial Intelligence?
+            <br>
+            Neuro Nexus is a cutting-edge AI competition where teams battle it out by solving AI challenges, building intelligent bots, and tackling real-world machine learning problems. Adaptability, collaboration, and innovation are key to victory!
+            <br>
+            <br>
+            <strong>What You'll Face?</strong> 
+            <br>
+                <ul>
+                    <li>Knowledge blitz rounds to test AI fundamentals</li> 
+                    <li>Bot-building and AI strategy challenges.</li> 
+                    <li>Real-time code optimization and debugging.</li>
+                    <li>Live team-switch collaboration task.</li>
+                    <li>Real-world AI deployment puzzles.</li>
+                    <li>RIn this thrilling 5-hour marathon, only the teams who can think, build, and adapt like true AI engineers will dominate the battlefield.</li>
+                </ul>
+            </p>
+        <p > <strong>Note: Participants must bring their own laptops. Languages allowed: C++, Java, or Python. No AI code-generation tools permitted.</strong></p>
+</div>
+ <!-- WebWars -->
+    <div class="table-container hidden WebWars">
+        <h2>Web Wars: The Ultimate Solo Frontend Challenge!</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Team Members</th>
+                    <th>Competition</th>
+                    <th>Registration Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Team Members">Solo</td>
+                    <td data-label="Regist Amount">Rs 350/-</td>
+                    <td data-label="Competition" rowspan="2">Solo Developer Shutdown</td>
+                </tr>
+                 <tr>
+                    <td data-label="Team Members">Team (2-6) Members</td>
+                    <td data-label="Regist Amount">Rs 500/-</td>
+                </tr>
+                <tr>
+                    <th data-label="Team Members">Venue</th>
+                    <th data-label="Competition">Date Time</th>
+                    <th data-label="Regist Amount">Contact</th>
+                </tr>
+                <tr>
+                    <td data-label="Team Members">Lab 3</td>
+                    <td data-label="Competition">May 12, 2025 (9:30 AM – 2:30 PM)</td>
+                    <td data-label="Regist Amount">+92-333-1498844</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Description:</h3>
+        <p>Ready to prove you're the top frontend developer?  
+            <br>
+Web Wars is an intense solo competition where individual coders compete head-to-head in a frontend development marathon. Push your creative and technical limits as you design, build, and optimize under extreme time pressure!
+            <br>
+            <br>
+            <strong>What You'll Face?</strong> 
+            <br>
+                <ul>
+                    <li>A series of escalating frontend challenges. </li> 
+                    <li>UI design tasks demanding pixel-perfect precision  .</li> 
+                    <li>Responsive layout puzzles.</li>
+                    <li>JavaScript interactivity challenges.</li>
+                    <li>Real-time coding against the clock.</li>
+                </ul>
+            </p>
+        <p > <strong>Note: Participants must bring their own laptops. Languages allowed: C++, Java, or Python. No AI code-generation tools permitted.</strong></p>
+ </div>
+ <!-- CipherQuest -->
+    <div class="table-container hidden CipherQuest">
+        <h2>CipherQuest: The Ultimate Cybersecurity Escape Adventure!</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Team Members</th>
+                    <th>Competition</th>
+                    <th>Registration Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Team Members">Solo</td>
+                    <td data-label="Regist Amount">Rs 350/-</td>
+                    <td data-label="Competition" rowspan="2">Solo Developer Shutdown</td>
+                </tr>
+                 <tr>
+                    <td data-label="Team Members">Team (2-6) Members</td>
+                    <td data-label="Regist Amount">Rs 500/-</td>
+                </tr>
+                <tr>
+                    <th data-label="Team Members">Venue</th>
+                    <th data-label="Competition">Date Time</th>
+                    <th data-label="Regist Amount">Contact</th>
+                </tr>
+                <tr>
+                    <td data-label="Team Members">Lab 6</td>
+                    <td data-label="Competition">May 12, 2025 (10:00 AM – 3:00 PM)</td>
+                    <td data-label="Regist Amount">+92-343-0002422</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Description:</h3>
+        <p>Are you ready to crack the codes and beat the clock?
+            <br>
+            Step into CipherQuest, where cybersecurity skills meet escape room excitement! Dive into three thrilling challenge rooms packed with secret codes, mind-bending ciphers, and high-pressure problem-solving.
+            <br>
+            <br>
+            <strong>What You'll Face?</strong> 
+            <br>
+                <ul>
+                    <li>Escape the first two rooms in 10 minutes each!</li> 
+                    <li>Face the final mystery in a 15-minute showdown.</li> 
+                    <li>Up to three teams compete at once — fast-paced and action-packed! Expect:
+                        <ul style="margin-top: 10px;">
+                            <li>Classical & modern ciphers</li>
+                            <li>Cryptographic puzzles</li>
+                            <li>Pure teamwork and adrenaline!</li>
+                        </ul>
+                    </li>
+                    <li>Intense pressure to deliver clean, efficient solutions.</li>
+                    <li>The competition spans nearly 5 hours, designed to push your mind and stamina to the absolute limit. Fast, focused, and fierce — only the sharpest coder will seize the throne!.</li>
+                </ul>
+            </p>
+        <p > <strong>Note: Participants must bring their own laptops. Languages allowed: C++, Java, or Python. No AI code-generation tools permitted.</strong></p>
+
+    </div>
+
+    <!-- <a href="#" class="register-button">Register Now</a> -->
+     <a href="form2.html" class="register-button button">
+         Register Now
+        <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          fill-rule="evenodd"
+          d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
+          clip-rule="evenodd"
+        ></path>
+      </svg>
+    <!-- <button class=" register-button button">
+        Register Now
+        <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            fill-rule="evenodd"
+            d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </button> -->
+</body>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const eventType = urlParams.get('event');
+
+    switch (eventType) {
+        case 'coderoyal':
+            document.querySelector('.coderoyal').classList.remove('hidden');
+            break;
+        case 'DesignVerse':
+            document.querySelector('.DesignVerse').classList.remove('hidden');
+            break;
+            break;
+        case 'NeuroNexus':
+            document.querySelector('.NeuroNexus').classList.remove('hidden');
+            break;
+            break;
+        case 'WebWars':
+            document.querySelector('.WebWars').classList.remove('hidden');
+            break;
+            break;
+        case 'CipherQuest':
+            document.querySelector('.CipherQuest').classList.remove('hidden');
+            break;
+            break;
+        default:
+            eventName = 'Event Details';
+            eventDescription = 'No specific event selected. Please return to the categories page.';
+    }
+
+
+</script>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BIIT-TechFest</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="./script.js"></script>
+</head>
+<body>
+  <div id="header-container"></div>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Discover Campus Events</h1>
+      <p>Join us in exploring exciting university events and activities!</p>
+      <!-- <button class="explore-btn">Explore Events</button> -->
+      <button class="explore-btn" onclick="window.location.href='event-details.html'">Explore Events</button>
+    </div>
+  </section>
+  
+  <div class="payment-banner">
+    <div class="payment-content">
+        <span class="highlight-text">Send registration fee to easypaisa account:</span>
+        <span class="payment-info">0348-4321265</span>
+        <span class="divider">|</span>
+        <span class="account-title">Account Title: Muhammad Awais Attari</span>
+    </div>
+</div>
+  <section class="upcoming-events">
+    <h2>Upcoming Events</h2>
+    <div class="events-grid">
+      <div onclick="onBtnClick();" class="event-card">
+        <img src="../Images/programming.jpg" alt="Programming Events">
+        <h3>Progarmming</h3>
+        <p>March 22, 2024</p>
+        <p>An evening of soulful jazz in downtown Chicago.</p>
+        <button onclick="onBtnClick();" class="card-btn">Explore More</button>
+      </div>
+      <div onclick="onBtnClick();" class="event-card">
+        <img src="../Images/Ai.jpg" alt="City Marathon">
+        <h3>Aritificial Intelligence</h3>
+        <p>April 5, 2024</p>
+        <p>Join the annual marathon and run through scenic routes.</p>
+        <button onclick="onBtnClick();" class="card-btn">Explore More</button>
+      </div>
+      <div onclick="onBtnClick();" class="event-card">
+        <img src="../Images/cyber.jpeg" alt="Food Fest">
+        <h3>Cyber Security</h3>
+        <p>May 15, 2024</p>
+        <p>Taste culinary delights from top chefs around the country.</p>
+        <button onclick="onBtnClick();" class="card-btn">Explore More</button>
+      </div>
+      <div onclick="onBtnClick();" class="event-card">
+        <img src="../Images/SE.jpeg" alt="Yoga Retreat">
+        <h3>Software Engineering</h3>
+        <p>June 10, 2024</p>
+        <p>Relax and rejuvenate with yoga in a tranquil setting.</p>
+        <button onclick="onBtnClick();" class="card-btn">Explore More</button>
+      </div>
+      <div onclick="onBtnClick();" class="event-card">
+        <img src="../Images/web.jpeg" alt="Tech Expo">
+        <h3>Web Events</h3>
+        <p>July 22, 2024</p>
+        <p>Discover the latest innovations in technology and startups.</p>
+        <button onclick="onBtnClick();" class="card-btn">Explore More</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="slider">
+    <div class="slider-container">
+      <div class="sliding-text">
+        For the first time in BIIT's history, the collaboration of five leading societies has made it possible to organize an extraordinary TechFest! 🚀 Get ready to experience innovation, creativity, and cutting-edge technology like never before. Don’t miss your chance to be part of this historic event — register now and unlock endless opportunities for learning, networking, and growth!
+      </div>
+    </div>
+  </section>
+  
+
+
+  <!-- Layout -->
+
+<!-- Detailed Time Allocation & Collaboration Windows -->
+
+<div class="time-section">
+
+
+<div class="layout-section">
+    <h1>Detailed Time Allocation</h1>
+    <table align="center">
+        <thead>
+            <tr>
+                <th>Time Slot</th>
+                <th>Activity</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="time-slot">9:00 AM – 9:30 AM</td>
+                <td>Opening Ceremony + Briefing</td>
+                <td>Welcome, Announcements, Rules, and Team Formation</td>
+            </tr>
+            <tr>
+                <td class="time-slot">9:30 AM – 11:00 AM</td>
+                <td>Round 1: Initial Challenges</td>
+                <td>MCQs, Planning Tasks, Early Activities</td>
+            </tr>
+            <tr>
+                <td class="time-slot">11:00 AM – 12:30 PM</td>
+                <td>Round 2: Core Challenges</td>
+                <td>Hands-on Coding, Design Sprints, Puzzle Solving</td>
+            </tr>
+            <tr>
+                <td class="time-slot">12:30 PM – 1:00 PM</td>
+                <td>Lunch Break & Networking</td>
+                <td>Refreshments, Rest, and Interaction across all events</td>
+            </tr>
+            <tr>
+                <td class="time-slot">1:00 PM – 2:00 PM</td>
+                <td>Round 3: Final Showdown</td>
+                <td>Advanced Problem Solving, Presentations, Build Completion</td>
+            </tr>
+            <tr>
+                <td class="time-slot">2:00 PM – 3:00 PM</td>
+                <td>Final Evaluations & Presentations</td>
+                <td>Demos, Code Reviews, Analysis</td>
+            </tr>
+            <tr>
+                <td class="time-slot">3:00 PM – 4:00 PM</td>
+                <td>Closing Ceremony & Awards</td>
+                <td>Results, Certificates, Grand Prizes Distribution</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+
+<!-- Rules Section -->
+<div class="rules-section">
+<div class="rules-section">
+  <h1>Competition Rules and Guidelines</h1>
+  <div class="rules-container">
+      <h2>General Rules</h2>
+      <ul class="rules-list">
+          <li><strong>Laptop Requirement:</strong> Participants must bring their own laptops, pre-installed with necessary tools (IDEs, browsers, etc.).</li>
+          <li><strong>Technology Usage:</strong> Only approved software tools may be used. No AI tools or pre-built code libraries unless specified.</li>
+          <li><strong>Time Management:</strong> Participants must adhere strictly to the given event timings.</li>
+          <li><strong>Fair Play Policy:</strong> Participants must work independently unless the competition allows teamwork.</li>
+          <li><strong>Support Pass System:</strong> Each participant can use up to two "Support Pass" opportunities per round to either seek or provide help.</li>
+          <li><strong>Break Times:</strong> A common break is scheduled for all participants from 12:30 PM to 1:00 PM.</li>
+          <li><strong>No Disruption Policy:</strong> Only those holding a Support Pass may move between labs during active competition times.</li>
+          <li><strong>Conduct:</strong> Professional conduct and respect towards fellow participants, organizers, and judges are mandatory.</li>
+          <li><strong>Violation:</strong> Any breach of rules may result in disqualification.</li>
+      </ul>
+
+      <h2>Special Rule: Team Shuffling System</h2>
+      <ul class="rules-list">
+          <li>Participants forming registered teams (up to 6 members) can be divided across multiple events.</li>
+          <li>Surprise Team Shuffles will occur during the event day, announced live.</li>
+          <li>Participants may switch labs temporarily to assist their teammates based on critical thinking tasks.</li>
+          <li>Limited shuffles allowed — strategic movement will be rewarded.</li>
+          <li>If a team collectively wins across all 5 competitions, they will be recognized with an exclusive Grand Prize honor.</li>
+          <li><strong>Note:</strong> Teams of 2 members can only enter a single event.</li>
+      </ul>
+  </div>
+</div>
+
+</body>
+</html>

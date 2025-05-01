@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="event.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <script src="script.js"></script>
+    <title>Societies and Upcoming Events</title>
+  <script>
+
+fetch('header.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('header-container').innerHTML = data;
+        // After the header is loaded, select the .navbar element and change its width
+        const navbar = document.querySelector('#header-container .navbar');
+        if (navbar) {
+            navbar.style.width = '97%';
+        }
+    });
+  </script>
+</head>
+<body>
+  <div  id="header-container"></div>
+
+    <!-- <div class="event-section">
+        <h1>Societies</h1>
+        <div class="container">
+            <div class="boxes">
+                <div class="box">
+                    <h2>Programming Society</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae voluptatibus accusantium nobis Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto, quidem?</p>
+                </div>
+                <div class="box">
+                    <h2>AI Society</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae voluptatibus accusantium nobis Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto, quidem?</p>
+                </div>
+                <div class="box">
+                    <h2>Web Society</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae voluptatibus accusantium nobis Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto, quidem?</p>
+                </div>
+                <div class="box">
+                    <h2>Cyber  Society</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae voluptatibus accusantium nobis Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto, quidem?</p>
+                </div>
+                <div class="box">
+                    <h2>SE Society</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae voluptatibus accusantium nobis Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto, quidem?</p>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+    <section class="upcoming-events-section">
+        <div class="upcoming-events-container">
+          <h2>Upcoming Events</h2>
+          <div class="event-list">
+            <div onclick="navigate('coderoyal');" class="event-card">
+                <!-- Programming event -->
+              <h3>Code Royale: The Ultimate Solo Programming Gauntlet!</h3>
+              <p class="event-time">May 12, 2025 | 10:00 AM - 6:00 PM</p>
+              <p class="event-description">Code Royale is a high-stakes solo coding battle where participants will race against time and complexity! Test your algorithmic strength, logical problem-solving, and hands-on coding skills as you climb the ladder from theory challenges to brutal final-round coding tasks.
+            </p>
+              <a href="./learnMore.html?event=coderoyal" class="register-link">Learn More →</a>
+            </div>
+      
+            <!-- SE Event -->
+            <div onclick="navigate('DesignVerse');" class="event-card">
+              <h3>DesignVerse: The Ultimate GUI Innovation Arena!</h3>
+              <p class="event-time">May 12, 2025 | 1:00 PM - 4:00 PM</p>
+              <p class="event-description">DesignVerse is a team-based GUI design competition where your creativity, teamwork, and user-centric thinking will be tested to the fullest. Create stunning interfaces and seamless user experiences that not only look beautiful but function flawlessly.</p>
+              <a href="./learnMore.html?event=DesignVerse" class="register-link">Learn More →</a>
+            </div>
+    
+            <!-- Ai Event -->
+            <div onclick="navigate('NeuroNexus');" class="event-card">
+              <h3>Neuro Nexus: The Ultimate AI Battlefield!</h3>
+              <p class="event-time">May 12, 2025 | 10:00 AM - 3:00 PM</p>
+              <p class="event-description">Neuro Nexus is a cutting-edge AI competition where teams battle it out by solving AI challenges, building intelligent bots, and tackling real-world machine learning problems. Adaptability, collaboration, and innovation are key to victory!</p>
+              <a href="./learnMore.html?event=NeuroNexus" class="register-link">Learn More →</a>
+            </div>
+      
+            <!-- Web Event -->
+            <div onclick="navigate('WebWars');" class="event-card">
+              <h3>Web Wars: The Ultimate Solo Frontend Challenge!</h3>
+              <p class="event-time">May 12, 2025 | 2:00 PM - 5:00 PM</p>
+              <p class="event-description">Ready to prove you're the top frontend developer?  
+
+                Web Wars is an intense solo competition where individual coders compete head-to-head in a frontend development marathon. Push your creative and technical limits as you design, build, and optimize under extreme time pressure!  
+                </p>
+              <a href="./learnMore.html?event=WebWars" class="register-link">Learn More →</a>
+            </div>
+      
+            <!-- Cyber -->
+            <div onclick="navigate('CipherQuest');" class="event-card">
+              <h3>CipherQuest: The Ultimate Cybersecurity Escape Adventure!</h3>
+              <p class="event-time">May 12, 2025 | 11:00 AM - 4:00 PM</p>
+              <p class="event-description">Are you ready to crack the codes and beat the clock?
+                Step into CipherQuest, where cybersecurity skills meet escape room excitement! Dive into three thrilling challenge rooms packed with secret codes, mind-bending ciphers, and high-pressure problem-solving.</p>
+              <a href="./learnMore.html?event=CipherQuest" class="register-link">Learn More →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+</body>
+</html>

@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="script.js"></script>
+  <title>Event Registration</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    .spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255,255,255,.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+    form {
+      margin: 50px auto;
+      width: 100%;
+      max-width: 1000px;
+      padding: 30px;
+      background-color: #fff; 
+      border-radius: 12px;
+      border: 1px solid #e5e7eb; 
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+
+        h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #4F46E5; 
+      font-size: 32px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .form-row > div {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: 600;
+      color: #333; /* Darker label color */
+      font-size: 15px;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    input[type="file"] {
+      border: none;
+      border-bottom: 2px solid #ccc;
+      background: transparent;
+      padding: 10px 5px;
+      font-size: 16px;
+      color: #333; /* Dark text for inputs */
+      transition: all 0.3s ease;
+      width: 100%;
+      
+    }
+
+    input::placeholder {
+      color: #aaa; /* Lighter placeholder color */
+    }
+
+    input:focus,
+    select:focus {
+      outline: none;
+      border-bottom: 2px solid #4F46E5; /* Blue border on focus */
+      background: transparent;
+    }
+
+    select {
+      background: transparent;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    .file-upload {
+      font-size: 14px;
+    }
+
+    .member-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .member-fields .member-pair {
+      display: flex;
+      gap: 20px;
+    }
+
+    .member-fields .member-pair > div {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 5px;
+    }
+
+    .checkbox-container label {
+      font-weight: normal;
+      color: #333;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #4F46E5; /* Blue background for button */
+      color: #fff; /* White text for button */
+      font-weight: bold;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      margin-top: 10px;
+      cursor: not-allowed;
+      transition: background-color 0.3s;
+    }
+
+    button.enabled {
+      cursor: pointer;
+      background-color: #0056b3; /* Darker blue when enabled */
+    }
+
+    button.enabled:hover {
+      background-color: #00408b; /* Even darker blue on hover */
+    }
+
+    @media (max-width: 768px) {
+      .form-row, .member-fields .member-pair {
+        flex-direction: column;
+      }
+      form{
+        width: 90%;
+      }
+    }
+
+    
+    .error-icon {
+            width: 5rem;
+            height: 5rem;
+            color: #dc2626;
+            margin-bottom: 1rem;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 3rem; /* Make the text icon larger */
+            line-height: 5rem;  /* Vertically center the text */
+        }
+        .custom-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .custom-modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            max-width: 90%;
+            width: 372px;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            animation: slideInTop 0.5s ease forwards;
+            transform-origin: center top;
+        }
+
+        @keyframes slideInTop {
+            from {
+                opacity: 0;
+                transform: translateY(-100px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes slideOutTop {
+            from {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-100px) scale(0.6);
+            }
+        }
+
+        .custom-close-button {
+            margin-top: 1.5rem;
+            padding: 0.75rem 1rem;
+            background-color: #3b82f6;
+            color: #fff;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border: none;
+            font-weight: 600;
+        }
+
+        .custom-close-button:hover {
+            background-color: #2563eb;
+        }
+    
+  </style>
+</head>
+
+<body>
+  <div id="header-container"></div>
+
+  <h1 style="margin-top: 100px; text-align: center;">Event Registration Form</h1> 
+  <form id="registrationForm">
+
+    <div>
+      <label for="eventName">Select Event:</label>
+      <select id="eventName" name="eventName" required>
+        <option value="" disabled selected>Choose Event</option>
+        <option value="Code Royale">Code Royale: The Ultimate Solo Programming Gauntlet!</option>
+        <option value="DesignVerse">DesignVerse: The Ultimate GUI Innovation Arena</option>
+        <option value="Neuro Nexus">Neuro Nexus: The Ultimate AI Battlefield</option>
+        <option value="Web Wars">Web Wars: The Ultimate Solo Frontend Challenge</option>
+        <option value="CipherQuest">CipherQuest: The Ultimate Cybersecurity Escape Adventure!</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="teamName">Team Name:</label>
+      <input type="text" id="teamName" name="teamName" placeholder="Enter your team name" required>
+    </div>
+
+    <div class="form-row">
+      <div>
+        <label for="groupSize">Group Size (1-6):</label>
+        <select id="groupSize" name="groupSize" required>
+          <option value="" disabled selected>Select Group Size</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="section">Section:</label>
+        <input type="text" id="section" name="section" placeholder="e.g., BSCS-6A" required>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div>
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" placeholder="e.g., Ali Ahmed" required>
+      </div>
+
+      <div>
+        <label for="aridNumber">Your Arid Number:</label>
+        <input type="text" id="aridNumber" name="aridNumber" placeholder="e.g., 2022-ARID-4079" required>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div>
+        <label for="cnic">Your CNIC:</label>
+        <input type="text" id="cnic" name="cnic" placeholder="37405-1233345-1" required>
+      </div>
+
+      <div>
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" placeholder="0312-1234567" required>
+      </div>
+    </div>
+
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="yourmail@gmail.com" required>
+    </div>
+
+    <div>
+      <label for="paymentScreenshot">Upload Payment Screenshot:</label>
+      <input type="file" id="paymentScreenshot" name="paymentScreenshot" class="file-upload" accept="image/*" required>
+    </div>
+
+    <div id="memberFields" class="member-fields"></div>
+
+    <div class="checkbox-container">
+      <input type="checkbox" id="paymentConfirmed">
+      <label for="paymentConfirmed">I confirm that I have successfully paid the fee to given easypaisa account.</label>
+    </div>
+
+    <button type="submit" id="registerBtn" disabled>Register</button>
+  </form>
+
+  <script>
+    const groupSizeSelect = document.getElementById('groupSize');
+    const memberFieldsDiv = document.getElementById('memberFields');
+    const paymentCheckbox = document.getElementById('paymentConfirmed');
+    const registerBtn = document.getElementById('registerBtn');
+
+    groupSizeSelect.addEventListener('change', function () {
+      const groupSize = parseInt(this.value);
+      memberFieldsDiv.innerHTML = '';
+
+      if (groupSize > 1) {
+        for (let i = 2; i <= groupSize; i++) {
+          const memberPairDiv = document.createElement('div');
+          memberPairDiv.classList.add('member-pair');
+
+          const nameDiv = document.createElement('div');
+          const nameLabel = document.createElement('label');
+          nameLabel.textContent = `Member ${i} Name:`;
+          const nameInput = document.createElement('input');
+          nameInput.type = 'text';
+          nameInput.name = `memberName${i}`;
+          nameInput.placeholder = `Enter Name of Member ${i}`;
+          nameInput.required = true;
+          nameDiv.appendChild(nameLabel);
+          nameDiv.appendChild(nameInput);
+
+          const aridDiv = document.createElement('div');
+          const aridLabel = document.createElement('label');
+          aridLabel.textContent = `Member ${i} Arid Number:`;
+          const aridInput = document.createElement('input');
+          aridInput.type = 'text';
+          aridInput.name = `memberAridNumber${i}`;
+          aridInput.placeholder = `Enter Arid Number of Member ${i}`;
+          aridInput.required = true;
+          aridDiv.appendChild(aridLabel);
+          aridDiv.appendChild(aridInput);
+
+          memberPairDiv.appendChild(nameDiv);
+          memberPairDiv.appendChild(aridDiv);
+
+          memberFieldsDiv.appendChild(memberPairDiv);
+        }
+      }
+    });
+
+    paymentCheckbox.addEventListener('change', function () {
+      if (this.checked) {
+        registerBtn.disabled = false;
+        registerBtn.classList.add('enabled');
+      } else {
+        registerBtn.disabled = true;
+        registerBtn.classList.remove('enabled');
+      }
+    });
+
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwQAm8DGyzUHy1RdsF0bbmK2g5_a2YOtbO-Jc-cclWNL1fKahBC0MGQS39uJr_SCabLEQ/exec';
+//   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw9I1oycSfXIxnYOZhugNiziBNaR6AO3oKwFjJJ_DQ5zEGmtRzSUvQ-CtHw9hw-RiGL/exec';
+  
+//   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw6qK9ulrkBKZkUY2XU_k2HeLPzmtg_Eo1YvIHauCsme_COPWl4diXcWMABbLPxU-6k/exec';
+
+//   document.getElementById('registrationForm').addEventListener('submit', async (e) => {
+//     e.preventDefault();
+    
+//     const form = e.target;
+//     const formData = new FormData(form);
+//     const fileInput = document.getElementById('paymentScreenshot');
+    
+//     // Convert image to Base64
+//     let fileData = '';
+//     let fileName = '';
+//     if(fileInput.files[0]) {
+//       const file = fileInput.files[0];
+//       const reader = new FileReader();
+//       reader.onload = (e) => {
+//         fileData = e.target.result.split(',')[1];
+//         fileName = file.name;
+//       };
+//       reader.readAsDataURL(file);
+//     }
+
+//     // Collect form data
+//     const payload = {
+//       eventName: form.eventName.value,
+//       teamName: form.teamName.value,
+//       groupSize: form.groupSize.value,
+//       section: form.section.value,
+//       name: form.name.value,
+//       aridNumber: form.aridNumber.value,
+//       cnic: form.cnic.value,
+//       phoneNumber: form.phoneNumber.value,
+//       email: form.email.value,
+//       fileData: fileData,
+//       fileName: fileName
+//     };
+
+//     // Add member data
+//     const groupSize = parseInt(form.groupSize.value);
+//     for(let i = 2; i <= groupSize; i++) {
+//       payload[`memberName${i}`] = form[`memberName${i}`]?.value || '';
+//       payload[`memberAridNumber${i}`] = form[`memberAridNumber${i}`]?.value || '';
+//     }
+
+//     try {
+//       const response = await fetch(SCRIPT_URL, {
+//         method: 'POST',
+//         body: JSON.stringify(payload)
+//       });
+      
+//       const result = await response.json();
+      
+//       if(result.success) {
+//         alert(`Registration successful! Your ID: ${result.registrationId}`);
+//         form.reset();
+//         document.getElementById('memberFields').innerHTML = '';
+//         document.getElementById('paymentConfirmed').checked = false;
+//       } else {
+//         throw new Error(result.error || 'Registration failed');
+//       }
+//     } catch(error) {
+//       alert(error.message);
+//     }
+//   });
+  // Add this to your form submission handler
+document.getElementById('registrationForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  // Show loading state
+  const submitBtn = document.getElementById('registerBtn');
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<span class="spinner"></span> Processing...';
+  
+  try {
+    const formData = new FormData(e.target);
+    const fileInput = document.getElementById('paymentScreenshot');
+    
+    // Convert image to Base64
+    let fileData = '';
+    let fileName = '';
+    if(fileInput.files[0]) {
+      const file = fileInput.files[0];
+      fileData = await toBase64(file);
+      fileName = file.name;
+    }
+
+    // Collect form data
+    const payload = {
+      eventName: formData.get('eventName'),
+      teamName: formData.get('teamName'),
+      groupSize: formData.get('groupSize'),
+      section: formData.get('section'),
+      name: formData.get('name'),
+      aridNumber: formData.get('aridNumber'),
+      cnic: formData.get('cnic'),
+      phoneNumber: formData.get('phoneNumber'),
+      email: formData.get('email'),
+      fileData: fileData.split(',')[1], // Remove data URL prefix
+      fileName: fileName
+    };
+
+    // Add member data
+    const groupSize = parseInt(formData.get('groupSize'));
+    for(let i = 2; i <= groupSize; i++) {
+      payload[`memberName${i}`] = formData.get(`memberName${i}`) || '';
+      payload[`memberAridNumber${i}`] = formData.get(`memberAridNumber${i}`) || '';
+    }
+
+    const response = await fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    });
+    
+    const result = await response.json();
+    
+    if(result.success) {
+      // Show success modal
+      showSuccessModal(result.message, result.registrationId);
+      document.getElementById('registrationForm').reset();
+    } else {
+      throw new Error(result.error || 'Registration failed');
+    }
+  } catch(error) {
+    showErrorModal();
+    // alert(error.message);
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Register';
+  }
+});
+
+// Helper function to convert file to base64
+function toBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
+
+// Function to show success modal
+// function showSuccessModal(message, registrationId) {
+//   const modal = document.createElement('div');
+//   modal.style.position = 'fixed';
+//   modal.style.top = '0';
+//   modal.style.left = '0';
+//   modal.style.width = '100%';
+//   modal.style.height = '100%';
+//   modal.style.backgroundColor = 'rgba(0,0,0,0.7)';
+//   modal.style.display = 'flex';
+//   modal.style.justifyContent = 'center';
+//   modal.style.alignItems = 'center';
+//   modal.style.zIndex = '1000';
+  
+//   modal.innerHTML = `
+//     <div style="background: white; padding: 30px; border-radius: 12px; max-width: 500px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+//       <div style="font-size: 60px; color: #4CAF50; margin-bottom: 20px;">✓</div>
+//       <h2 style="color: #4F46E5; margin-bottom: 15px;">Registration Successful!</h2>
+//       <p style="margin-bottom: 20px; line-height: 1.6;">${message}</p>
+//       <div style="background: #40B76F; padding: 15px; border-radius: 8px; margin-bottom: 20px; animation: infoFill 1.5s forwards;">
+   
+//       </div>
+//       <button onclick="this.parentElement.parentElement.remove()" 
+//               style="background: #40B76F; color: white; border: none; padding: 12px 25px; border-radius: 6px; font-size: 16px; cursor: pointer;">
+//         Close
+//       </button>
+//     </div>
+//     <style>
+      
+//       @keyframes infoFill {
+//         from { width: 0; }
+//         to { width: 100%; }
+//       }
+//     </style>
+//   `;
+  
+//   document.body.appendChild(modal);
+// }
+function showErrorModal() {
+            const modal = document.createElement('div');
+            modal.className = 'custom-modal-overlay';
+
+            modal.innerHTML = `
+                <div class="custom-modal-content">
+                    <span class="error-icon"> ❌ </span>
+                    <h2 class="text-2xl font-semibold text-red-600 mb-4">Registration Failed</h2>
+                    <p class="text-gray-700 mb-6">
+                        Please make sure your internet is connected or contact team leads at TechFest for any queries.
+                    </p>
+                    <div class="text-center">
+                        <button class="custom-close-button">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+
+            // Close with exit animation
+            modal.querySelector('.custom-close-button').addEventListener('click', () => {
+                const modalContent = modal.querySelector('.custom-modal-content');
+                modalContent.style.animation = 'slideOutTop 0.4s ease forwards';
+                setTimeout(() => {
+                    document.body.removeChild(modal);
+                }, 400);
+            });
+        }
+function showSuccessModal(message) {
+  const modal = document.createElement('div');
+  modal.className = 'custom-modal-overlay';
+
+  modal.innerHTML = `
+      <div class="custom-modal-content">
+        <div style="font-size: 60px; color: #4CAF50; margin-bottom: 20px;">✓</div>
+        <h2 style="color: #4F46E5; margin-bottom: 15px;">Registration Successful!</h2>
+        <p style="margin-bottom: 20px; line-height: 1.6;">${message}</p>
+        <p style="margin-bottom: 20px; line-height: 1.6;">Join the techFest Community for further updates.</p>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill"></div>
+        </div>
+        <button class="custom-close-button">
+          Close
+        </button>
+      </div>
+      <style>
+        .custom-modal-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0,0,0,0.7);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 1000;
+        }
+
+        .custom-modal-content {
+          background: white;
+          padding: 30px;
+          border-radius: 12px;
+          max-width: 500px;
+          width: 90%;
+          text-align: center;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+          animation: slideInTop 0.5s ease forwards;
+          transform-origin: center top;
+        }
+
+        @keyframes slideInTop {
+          from {
+            opacity: 0;
+            transform: translateY(-100px) scale(0.8);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+
+        @keyframes slideOutTop {
+          from {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+          to {
+            opacity: 0;
+            transform: translateY(-100px) scale(0.6);
+          }
+        }
+
+        .custom-close-button {
+          background: #40B76F;
+          color: white;
+          border: none;
+          padding: 12px 25px;
+          border-radius: 6px;
+          font-size: 16px;
+          cursor: pointer;
+          margin-top: 20px;
+        }
+
+        .progress-bar-container {
+          width: 100%;
+          height: 12px;
+          background: #e0e0e0;
+          border-radius: 6px;
+          overflow: hidden;
+          margin: 15px 0;
+        }
+
+        .progress-bar-fill {
+          height: 100%;
+          background: #40B76F;
+          width: 0%;
+          animation: fillBar 1.5s forwards;
+        }
+
+        @keyframes fillBar {
+          from { width: 0%; }
+          to { width: 100%; }
+        }
+      </style>
+    `;
+
+  document.body.appendChild(modal);
+
+  // Close with exit animation
+  modal.querySelector('.custom-close-button').addEventListener('click', () => {
+    const modalContent = modal.querySelector('.custom-modal-content');
+    modalContent.style.animation = 'slideOutTop 0.4s ease forwards';
+    setTimeout(() => {
+      document.body.removeChild(modal);
+    }, 400); // match animation duration
+  });
+}
+
+ </script>
+</body>
+</html>
